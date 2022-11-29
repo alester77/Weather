@@ -1,3 +1,10 @@
+### Deployed Site: https://alester77.github.io/Weather/
+
+# Weather App
+## This is a weather app to help me learn how to build a site using the information from an API. It is meant to display the weather, both current and the forecast. It is supposed to save the history of the searched cities. 
+
+
+
 GIVEN a weather dashboard with form inputs
 WHEN I search for a city
 THEN I am presented with current and future conditions for that city and that city is added to the search history
