@@ -1,0 +1,5 @@
+.current_weather{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

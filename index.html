@@ -10,34 +10,40 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-<link rel="stylesheet" href="/assets/style.css">  
+    <link rel="stylesheet" href="/assets/style.css">  
 <title>Weather</title>
 </head>
 <header>
     <h1 class="display-3">Weather Dashboard</h1>
-    <p class="lead">A simple weather application</p>
+    <p id="date"></p>
 </header>
+
 <body>
+  <div >
+    <input type="text" placeholder="Enter City" id="userInput">
+    <button class="cityBtn" id="citySubmit">Enter</button>
+  </div>
+  
+<!-- current forecast -->
+<div class="current_weather"></div>
+  <div id="description"></div>
+  <div id="icon"></div>
+  <h1 id="location"></h1>
+  <h1 id="temp"></h1>
+  <div id="location"></div>
+  <div id="humidity"></div>
+  <div id="wind_speed"></div>
 
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 text-center">
-        <input type="text" placeholder="City"><button type="button" class="query_btn btn btn-default btn-sm">Search</button><br>
-        <input type="text" placeholder="Zip Code"><button type="button" class="query_btn btn btn-default btn-sm">Search</button><br>
-    </div>
-</div>
+  <!-- future forecast -->
+  <section class="weather">
+    <div class="container"></div>
+      <div class="forecast"></div>
+  </section>
 
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2 text-center">
-        <h2>City: <span id="city"></span></h2>
-        <h2>Main Weather: <span id="main_weather"></span></h2>
-        <h2>Description: <span id="description_weather"></span></h2>
-        <img id="weather_image" src="">
-        <h2>Temperature: <span id="temperature"></span></h2>
-        <h2>Pressure: <span id="pressure"></span></h2>
-        <h2>Humidity: <span id="humidity"></span></h2>
-    </div>
-</div>
 
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+  integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/assets/script.js"></script>
 </body>

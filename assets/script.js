@@ -1,65 +1,49 @@
-// set up API to get weather data
-$( document ).ready(function() {
-  var appID = "afc541bfbb5fee51552f41423c944cfd";
+var myApi = "afc541bfbb5fee51552f41423c944cfd";
+var citySearch = "";
+var lastCity = "";
 
-  $(".query_btn").click(function(){
-      var query_param = $(this).prev().val();
-  })
-});
+  function getApi() {
+    var cityName= document.getElementById("userInput").value;
+    var appID = "afc541bfbb5fee51552f41423c944cfd";
+    var baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+appID+"&units=imperial";
+  
+    fetch(baseUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        inputWeather(data);
+        // console.log(data);
+        // console.log(cityName);
+      })
+      .catch(function() {
 
-$( document ).ready(function() {
-  var appID = "afc541bfbb5fee51552f41423c944cfd";
-
-  $(".query_btn").click(function(){
-
-      var query_param = $(this).prev().val();
-
-      if ($(this).prev().attr("placeholder") == "City") {
-          var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + query_param + "&APPID=" + appID;
-      } else if ($(this).prev().attr("placeholder") == "Zip Code") {
-          var weather = "http://api.openweathermap.org/data/2.5/weather?zip=" + query_param + "&APPID=" + appID;
-      }
-  })
-});
-
-$( document ).ready(function() {
-  var appID = "afc541bfbb5fee51552f41423c944cfd";
-
-  $(".query_btn").click(function(){
-
-      var query_param = $(this).prev().val();
-
-      if ($(this).prev().attr("placeholder") == "City") {
-          var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + query_param + "&APPID=" + appID;
-      } else if ($(this).prev().attr("placeholder") == "Zip Code") {
-          var weather = "http://api.openweathermap.org/data/2.5/weather?zip=" + query_param + "&APPID=" + appID;
-      }
-
-      $.getJSON(weather,function(json){
-          $("#city").html(json.name);
-          $("#main_weather").html(json.weather[0].main);
-          $("#description_weather").html(json.weather[0].description);
-          $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + json.weather[0].icon + ".png");
-          $("#temperature").html(json.main.temp);
-          $("#pressure").html(json.main.pressure);
-          $("#humidity").html(json.main.humidity);
       });
-  })
+  }
+  
+  citySubmit.addEventListener('click', getApi);
 
-  // Optional Code for temperature conversion
-  var fahrenheit = true;
+  // display current weather
+  function inputWeather(d){
+    var image = document.createElement('img');
+    image.src = "http://openweathermap.org/img/wn/"+d.weather[0].icon+"@2x.png"
+    document.getElementById('temp').innerHTML = d.main.temp+"°F";
+    document.getElementById('location').innerHTML = d.name;
+    document.getElementById('humidity').innerHTML = "Humidity: "+d.main.humidity+"%";
+    document.getElementById('wind_speed').innerHTML = "Wind Speed: "+d.wind.speed+"mph";
+    document.getElementById('icon').appendChild(image);
+    // console.log(icon);
+  }
 
-  $("#convertToCelsius").click(function() {
-      if (fahrenheit) {
-          $("#temperature").text(((($("#temperature").text() - 32) * 5) / 9));
-      }
-      fahrenheit = false;
-  });
+  function getForecast () {
+    var cityName= document.getElementById("userInput").value;
+    var appID = "d058ea765342023d2ab28e46acf11198";
+    var dailyUrl = 'http://api.openweathermap.org/data/2.5/forecast?q='+cityName+'&exclude=minutely,hourly,alerts&appid='+appID+"&units=imperial";
+    var forecastEl = document.getElementsByClassName("forecast");
 
-  $("#convertToFahrenheit").click(function() {
-      if (fahrenheit == false) {
-          $("#temperature").text((($("#temperature").text() * (9/5)) + 32));
-      }
-      fahrenheit = true;
-  });
-});
+    fetch(dailyUrl)
+    .then(function (response) {
+      console.log(data);
+    })
+  }
+    citySubmit.addEventListener('click', getForecast)
